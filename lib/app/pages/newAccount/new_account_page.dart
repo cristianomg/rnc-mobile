@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rnc_mobile/app/componentes/line_separetor.dart';
+import 'package:rnc_mobile/app/componentes/line_link.dart';
 import 'package:rnc_mobile/app/componentes/rnc_buttom.dart';
 import 'package:rnc_mobile/app/componentes/rnc_input.dart';
 import 'package:rnc_mobile/app/layout/main_layout.dart';
@@ -72,27 +73,12 @@ class NewAccountPage extends StatelessWidget {
                   height: 40,
                 ),
                 const LineSeparetor(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Já possui uma conta?',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        _backToLogin(context);
-                      },
-                      child: const Text(
-                        'Voltar ao login',
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                  ],
+                LineLink(
+                  onPressed: () {
+                    _backToLogin(context);
+                  },
+                  text: 'Já possui uma conta?',
+                  linkText: 'Voltar ao login',
                 )
               ],
             ),

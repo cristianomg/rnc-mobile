@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rnc_mobile/app/componentes/line_link.dart';
 import 'package:rnc_mobile/app/layout/main_layout.dart';
 
 import '../../componentes/line_separetor.dart';
@@ -10,11 +11,14 @@ class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   _openAbout(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute<void>(
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
         builder: (BuildContext context) {
           return const AboutPage();
         },
-        fullscreenDialog: true));
+        fullscreenDialog: true,
+      ),
+    );
   }
 
   _openRecoveryPassword(BuildContext context) {
@@ -91,30 +95,13 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 const LineSeparetor(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Não possui conta?',
-                      style: TextStyle(
-                        fontFamily: 'Roboto',
-                        fontSize: 16,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        _openNewAccount(context);
-                      },
-                      child: const Text(
-                        'Cadastre-se',
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                  ],
-                )
+                LineLink(
+                  linkText: 'Cadastre-se',
+                  text: 'Não possui conta?',
+                  onPressed: () {
+                    _openNewAccount(context);
+                  },
+                ),
               ],
             ),
           ),
