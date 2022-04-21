@@ -20,14 +20,18 @@ class LoginTextField extends StatelessWidget {
       keyboardType: keyboardType,
       decoration: InputDecoration(
         hintText: hint,
-        hintTextDirection: TextDirection.ltr,
+        hintStyle: const TextStyle(
+          color: Colors.black26,
+          fontSize: 14,
+        ),
         suffixIcon: suffixIcon,
         suffixIconColor: Colors.black,
         labelText: label,
-        labelStyle: const TextStyle(color: Colors.black),
+        labelStyle: const TextStyle(color: Colors.black26),
+        focusColor: const Color(0xff59E5BF),
         border: OutlineInputBorder(
           borderSide: const BorderSide(
-            color: Colors.black,
+            color: Colors.black26,
             style: BorderStyle.solid,
             width: 2,
           ),

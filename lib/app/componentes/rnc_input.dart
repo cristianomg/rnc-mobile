@@ -23,9 +23,12 @@ class RncInput extends StatelessWidget {
       autocorrect: !obscureText,
       decoration: InputDecoration(
         labelText: label,
+        labelStyle: const TextStyle(
+          color: Colors.black26,
+        ),
         border: OutlineInputBorder(
           borderSide: const BorderSide(
-            color: Colors.black,
+            color: Colors.black26,
             style: BorderStyle.solid,
             width: 2,
           ),

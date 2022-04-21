@@ -20,6 +20,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        colorScheme: ThemeData().colorScheme.copyWith(
+              primary: const Color(0xff59E5BF),
+            ),
         fontFamily: 'Roboto',
         backgroundColor: const Color(0xff59E5BF),
       ),
