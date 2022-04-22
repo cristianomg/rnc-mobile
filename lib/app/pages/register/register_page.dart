@@ -195,7 +195,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     widget.controller.dispose();
   }

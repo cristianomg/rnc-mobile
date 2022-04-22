@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rnc_mobile/app/layout/rnc_drawer.dart';
+
+import '../../layout/rnc_app_bar.dart';
 
 class HomePage extends StatelessWidget {
   static const String routeName = '/home';
@@ -7,6 +10,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const SafeArea(
+      child: Scaffold(
+        appBar: RncAppBar(),
+        drawer: RncDrawer(),
+      ),
+    );
   }
 }

@@ -33,6 +33,8 @@ class LoginController {
     prefs.setString(kUser, json.encode(authResponse['user']));
     prefs.setString(kjwt_token, authResponse['token'].toString());
     prefs.setString(kPermission, authResponse['permission'].toString());
+    prefs.setInt(
+        kPermissionId, authResponse['user']['userPermissionId'] as int);
     prefs.setBool(klogged_in, true);
   }
 

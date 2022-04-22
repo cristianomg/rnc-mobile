@@ -22,7 +22,7 @@ class AuthRepository {
 
     if (response.statusCode == 200) {
       final responseJson = json.decode(response.body) as Map<String, dynamic>;
-
+      print(responseJson);
       return responseJson;
     }
 

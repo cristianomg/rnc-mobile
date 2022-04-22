@@ -14,9 +14,7 @@ class Interceptor implements InterceptorContract {
           false && prefs.getString(kjwt_token) != null) {
         data.headers["Authorization"] = "Bearer ${prefs.getString(kjwt_token)}";
       }
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
     return data;
   }
 

@@ -89,6 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 15,
                 ),
                 LoginTextField(
+                  obscureText: true,
                   controller: widget.controller.passwordController,
                   label: "Senha",
                   hint: "",
@@ -147,7 +148,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     widget.controller.dispose();
   }

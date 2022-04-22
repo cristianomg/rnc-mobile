@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rnc_mobile/app/pages/profile/profile_page.dart';
 import 'package:rnc_mobile/app/pages/register/register_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,6 +24,7 @@ class _MyAppState extends State<MyApp> {
     LoginPage.routeName: (BuildContext context) =>
         LoginPage(controller: LoginController()),
     HomePage.routeName: (BuildContext context) => const HomePage(),
+    ProfilePage.routeName: (BuildContext context) => const ProfilePage(),
     RecoveryPasswordPage.routeName: (buildContext) =>
         const RecoveryPasswordPage(),
     RegisterPage.routeName: (buildContext) => RegisterPage(
@@ -36,7 +38,6 @@ class _MyAppState extends State<MyApp> {
     final prefs = await SharedPreferences.getInstance();
 
     setState(() {
-      print('está logado ? ${prefs.getBool(klogged_in).toString()}');
       _initialRoute = prefs.getBool(klogged_in) ?? false
           ? HomePage.routeName
           : LoginPage.routeName;
