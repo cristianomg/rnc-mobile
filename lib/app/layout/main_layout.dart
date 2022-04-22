@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rnc_mobile/app/core/constants.dart';
 
 class MainLayout extends StatelessWidget {
   final Widget child;
@@ -12,7 +13,7 @@ class MainLayout extends StatelessWidget {
     return Container(
       height: double.infinity,
       width: double.infinity,
-      color: const Color(0xff59E5BF),
+      color: const Color(kPrimary_color),
       padding: const EdgeInsets.all(10),
       child: Center(
         child: SingleChildScrollView(

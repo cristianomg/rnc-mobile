@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:rnc_mobile/app/componentes/line_separetor.dart';
+import 'package:rnc_mobile/app/pages/login/login_page.dart';
 
 import '../../componentes/rnc_buttom.dart';
 import '../../componentes/rnc_input.dart';
 import '../../layout/main_layout.dart';
 
 class RecoveryPasswordPage extends StatelessWidget {
+  static const String routeName = '/recovery-password';
   const RecoveryPasswordPage({Key? key}) : super(key: key);
 
   @override
@@ -57,7 +59,8 @@ class RecoveryPasswordPage extends StatelessWidget {
                 const LineSeparetor(),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pushReplacementNamed('/login');
+                    Navigator.of(context)
+                        .pushReplacementNamed(LoginPage.routeName);
                   },
                   child: const Text(
                     'Voltar ao login',

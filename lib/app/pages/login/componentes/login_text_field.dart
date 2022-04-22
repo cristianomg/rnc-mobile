@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/constants.dart';
+
 class LoginTextField extends StatelessWidget {
+  final TextEditingController controller;
   final Icon suffixIcon;
   final String label;
   final String hint;
@@ -12,11 +15,13 @@ class LoginTextField extends StatelessWidget {
     required this.label,
     required this.hint,
     required this.keyboardType,
+    required this.controller,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
       keyboardType: keyboardType,
       decoration: InputDecoration(
         hintText: hint,
@@ -28,7 +33,7 @@ class LoginTextField extends StatelessWidget {
         suffixIconColor: Colors.black,
         labelText: label,
         labelStyle: const TextStyle(color: Colors.black26),
-        focusColor: const Color(0xff59E5BF),
+        focusColor: const Color(kPrimary_color),
         border: OutlineInputBorder(
           borderSide: const BorderSide(
             color: Colors.black26,

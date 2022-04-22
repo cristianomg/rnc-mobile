@@ -1,15 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:rnc_mobile/app/componentes/line_link.dart';
+import 'package:rnc_mobile/app/controllers/login_controller.dart';
 import 'package:rnc_mobile/app/layout/main_layout.dart';
+import 'package:rnc_mobile/app/pages/home/home_page.dart';
+import 'package:rnc_mobile/app/pages/recoveryPassword/recovery_password_page.dart';
+import 'package:rnc_mobile/app/pages/register/register_page.dart';
 
 import '../../componentes/line_separetor.dart';
+import '../../componentes/result_alert.dart';
 import '../../componentes/rnc_buttom.dart';
 import '../about/about_page.dart';
 import 'componentes/login_text_field.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  final LoginController controller;
+  static const String routeName = '/login';
+  const LoginPage({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   _openAbout(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
@@ -22,11 +37,29 @@ class LoginPage extends StatelessWidget {
   }
 
   _openRecoveryPassword(BuildContext context) {
-    Navigator.of(context).pushReplacementNamed('/recovery-password');
+    Navigator.of(context).pushReplacementNamed(RecoveryPasswordPage.routeName);
   }
 
   _openNewAccount(BuildContext context) {
-    Navigator.of(context).pushReplacementNamed('/new-account');
+    Navigator.of(context).pushReplacementNamed(RegisterPage.routeName);
+  }
+
+  _onSubmit() async {
+    try {
+      await widget.controller.login();
+
+      Navigator.of(context).pushReplacementNamed(HomePage.routeName);
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) => ResultAlert(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            title: 'Erro',
+            message: e.toString().replaceAll('Exception: ', '')),
+      );
+    }
   }
 
   @override
@@ -45,19 +78,21 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                const LoginTextField(
+                LoginTextField(
+                  controller: widget.controller.emailController,
                   label: "Email",
                   hint: "Ex: joaopassos@souunit.com.br",
-                  suffixIcon: Icon(Icons.email),
+                  suffixIcon: const Icon(Icons.email),
                   keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(
                   height: 15,
                 ),
-                const LoginTextField(
+                LoginTextField(
+                  controller: widget.controller.passwordController,
                   label: "Senha",
                   hint: "",
-                  suffixIcon: Icon(Icons.key),
+                  suffixIcon: const Icon(Icons.key),
                   keyboardType: TextInputType.text,
                 ),
                 Row(
@@ -91,7 +126,7 @@ class LoginPage extends StatelessWidget {
                 Center(
                   child: RncButtom(
                     text: "ENTRAR",
-                    onPressed: () {},
+                    onPressed: _onSubmit,
                   ),
                 ),
                 const LineSeparetor(),
@@ -108,5 +143,12 @@ class LoginPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    widget.controller.dispose();
   }
 }
