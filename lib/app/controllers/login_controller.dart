@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
-import 'package:rnc_mobile/app/core/constants.dart';
 import 'package:rnc_mobile/app/models/login_user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -25,17 +22,6 @@ class LoginController {
     );
 
     final response = await _authRepository.login(user);
-    _fillPreferences(prefs, response);
-  }
-
-  void _fillPreferences(
-      SharedPreferences prefs, Map<dynamic, dynamic> authResponse) {
-    prefs.setString(kUser, json.encode(authResponse['user']));
-    prefs.setString(kjwt_token, authResponse['token'].toString());
-    prefs.setString(kPermission, authResponse['permission'].toString());
-    prefs.setInt(
-        kPermissionId, authResponse['user']['userPermissionId'] as int);
-    prefs.setBool(klogged_in, true);
   }
 
   void dispose() {

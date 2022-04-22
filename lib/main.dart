@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:rnc_mobile/app/pages/ocurrences/list/occurrences_list_page.dart';
 import 'package:rnc_mobile/app/pages/profile/profile_page.dart';
 import 'package:rnc_mobile/app/pages/register/register_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app/controllers/login_controller.dart';
+import 'app/controllers/ocurrence_list_controller.dart';
+import 'app/controllers/profile_controller.dart';
 import 'app/controllers/register_controller.dart';
 import 'app/core/constants.dart';
 import 'app/pages/home/home_page.dart';
@@ -21,12 +24,21 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final routes = {
+    //
     LoginPage.routeName: (BuildContext context) =>
         LoginPage(controller: LoginController()),
     HomePage.routeName: (BuildContext context) => const HomePage(),
-    ProfilePage.routeName: (BuildContext context) => const ProfilePage(),
+    //
+    OcurrenceListPage.routeName: (BuildContext context) =>
+        OcurrenceListPage(controller: OcurrenceListController()),
+    //
+    ProfilePage.routeName: (BuildContext context) => ProfilePage(
+          controller: ProfileController(),
+        ),
+    //
     RecoveryPasswordPage.routeName: (buildContext) =>
         const RecoveryPasswordPage(),
+    //
     RegisterPage.routeName: (buildContext) => RegisterPage(
           controller: RegisterController(),
         ),

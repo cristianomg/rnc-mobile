@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../core/constants.dart';
 import '../pages/login/login_page.dart';
+import '../pages/ocurrences/list/occurrences_list_page.dart';
 import 'rnc_app_bar.dart';
 
 class RncDrawer extends StatefulWidget {
@@ -45,13 +46,13 @@ class _RncDrawerState extends State<RncDrawer> {
           'title': 'Cadastrar',
           'icon': const Icon(Icons.add_box),
           'isSelected': false,
-          'pageBuilder': LoginPage.routeName
+          'pageBuilder': OcurrenceListPage.routeName
         },
         {
           'title': 'Cadastradas',
           'icon': const Icon(Icons.list),
           'isSelected': false,
-          'pageBuilder': LoginPage.routeName
+          'pageBuilder': OcurrenceListPage.routeName
         },
       ],
     },
