@@ -9,4 +9,12 @@ class OcurrenceListController {
   Future<List<OcurrenceRegister>> getOcurrencesRegisters() async {
     return await _ocurrenceRegisterRepository.getAll();
   }
+
+  Future deleteOcurrenceRegister(String id) async {
+    await _ocurrenceRegisterRepository.delete(id);
+  }
+
+  Future<OcurrenceRegister> getById(String id) async {
+    return await _ocurrenceRegisterRepository.getById(id);
+  }
 }

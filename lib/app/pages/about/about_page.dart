@@ -28,35 +28,35 @@ class AboutPage extends StatelessWidget {
                     width: 150,
                   ),
                 ),
-                const AbountTitle(
+                const AboutTitle(
                   text: "Revolução no registro de dados laboratoriais",
                 ),
-                const Content(
+                const AboutContent(
                   text:
                       'O 4lab, é um site que traz a informatização para uma etapa de fundamental importância dentro de um laboratório clínico, o controle de qualidade. Surgiu com a perspectiva de reduzir e monitorar erros laboratoriais, diminuindo a utilização de papel como forma de registro, proporcionando maior praticidade, produtividade, controle, redução de custos e menor tempo de trabalho manual. Essa inovação tecnológica também auxiliará no processo da acreditação laboratorial, indispensável para que um laboratório tenha credibilidade e qualidade.',
                 ),
-                const AbountTitle(
+                const AboutTitle(
                   text: "Idealizadoras",
                 ),
-                const Content(text: """Ana Paula Barreto Prata Silva
+                const AboutContent(text: """Ana Paula Barreto Prata Silva
 Camilla Figueiredo Chianca
 Fabio Batista Santos
 Ingridy Evangelista Viana Lucena
 Patrícia de Oliveira Santos Almeida
 Virgilio Antônio do Nascimento Cardoso de Faro"""),
-                const AbountTitle(
+                const AboutTitle(
                   text: "Orientadores",
                 ),
-                const Content(text: """Ana Paula Barreto Prata Silva
+                const AboutContent(text: """Ana Paula Barreto Prata Silva
 Camilla Figueiredo Chianca
 Fabio Batista Santos
 Ingridy Evangelista Viana Lucena
 Patrícia de Oliveira Santos Almeida
 Virgilio Antônio do Nascimento Cardoso de Faro"""),
-                const AbountTitle(
+                const AboutTitle(
                   text: "Desenvolvedores",
                 ),
-                const Content(text: """Amadeu Martim Silva De Oliveira
+                const AboutContent(text: """Amadeu Martim Silva De Oliveira
 Brenno Santos Oliveira
 Cristiano Macedo Guimarães de Oliveira
 Danilo Michell Lisboa de Freitas

@@ -5,6 +5,7 @@ import 'package:rnc_mobile/app/core/constants.dart';
 import 'package:rnc_mobile/app/models/ocurrence_register.dart';
 import 'package:rnc_mobile/app/pages/ocurrences/list/componentes/occurrence_card_item_pending.dart';
 import 'package:rnc_mobile/app/pages/ocurrences/list/componentes/ocurrence_card_item.dart';
+import 'package:rnc_mobile/app/pages/ocurrences/list/componentes/ocurrence_detail_modal.dart';
 
 import '../../../controllers/ocurrence_list_controller.dart';
 import '../../../layout/rnc_app_bar.dart';
@@ -24,6 +25,61 @@ class OcurrenceListPage extends StatefulWidget {
 }
 
 class _OcurrenceListPageState extends State<OcurrenceListPage> {
+  _openDetail(BuildContext context, String ocurrenceId) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          return OcurrenceDetailModal(
+            ocurrence: widget.controller.getById(ocurrenceId),
+          );
+        },
+        fullscreenDialog: true,
+      ),
+    );
+  }
+
+  static final _buttomTitles = [
+    {
+      'title': 'Analisar',
+      'icon': const Icon(Icons.info),
+      'pendencyId': 1,
+    },
+    {
+      'title': 'Classificar',
+      'icon': const Icon(Icons.info),
+      'pendencyId': 2,
+    },
+    {
+      'title': 'Verificar',
+      'icon': const Icon(Icons.info),
+      'pendencyId': 3,
+    },
+    {
+      'title': 'Já Analisada',
+      'icon': const Icon(Icons.task_alt),
+      'pendencyId': 4,
+    }
+  ];
+
+  Widget _buildButtom(
+      BuildContext context, OcurrenceRegister ocurrenceRegister) {
+    final obj = _buttomTitles.firstWhere(
+        (e) => e['pendencyId'] == ocurrenceRegister.occurrencePendency);
+
+    return Container(
+      padding: const EdgeInsets.all(5),
+      width: 140,
+      child: RncButtom(
+        isDisabled: ocurrenceRegister.occurrencePendency == 4,
+        text: obj['title'].toString(),
+        icon: obj['icon'] as Icon,
+        onPressed: () {
+          _openDetail(context, ocurrenceRegister.id!);
+        },
+      ),
+    );
+  }
+
   _stateManagement(AsyncSnapshot<List<OcurrenceRegister>> snapshot) {
     switch (snapshot.connectionState) {
       case ConnectionState.none:
@@ -42,6 +98,10 @@ class _OcurrenceListPageState extends State<OcurrenceListPage> {
     }
   }
 
+  _onConfirmation(String id) {
+    widget.controller.deleteOcurrenceRegister(id);
+  }
+
   _buildList(List<OcurrenceRegister> registers) {
     return Expanded(
       child: ListView.builder(
@@ -54,7 +114,13 @@ class _OcurrenceListPageState extends State<OcurrenceListPage> {
               height: MediaQuery.of(context).size.height * 0.6,
               child: Column(
                 children: [
-                  const OcurrenceCardHeader(),
+                  OcurrenceCardHeader(
+                    onConfirmation: () {
+                      _onConfirmation(register.id ?? '');
+                      Navigator.of(context).pop();
+                      setState(() {});
+                    },
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 25, vertical: 10),
@@ -78,15 +144,10 @@ class _OcurrenceListPageState extends State<OcurrenceListPage> {
                           value: register.setor ?? '',
                         ),
                         OcurrenceCardItemPending(
-                            value: register.occurrencePendency.toString()),
+                            value: register.occurrencePendency ?? 0,
+                            isDelayed: register.isDelayed ?? false),
                         const LineSeparetor(),
-                        SizedBox(
-                          width: 100,
-                          child: RncButtom(
-                              text: 'Analisar',
-                              icon: const Icon(Icons.info),
-                              onPressed: () {}),
-                        )
+                        _buildButtom(context, register),
                       ],
                     ),
                   ),

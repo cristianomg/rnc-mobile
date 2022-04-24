@@ -28,4 +28,28 @@ class OcurrenceRegisterRepository {
 
     throw Exception(response.body);
   }
+
+  Future<OcurrenceRegister> getById(String id) async {
+    final response =
+        await _client.get(Uri.http(kBase_url, _base_url_controller + '/$id'));
+
+    if (response.statusCode == 200) {
+      final responseJson = json.decode(response.body);
+
+      return OcurrenceRegister.fromJson(responseJson);
+    }
+
+    throw Exception(response.body);
+  }
+
+  Future delete(String id) async {
+    final response = await _client
+        .delete(Uri.http(kBase_url, _base_url_controller + '/$id'));
+
+    if (response.statusCode == 200) {
+      return;
+    }
+
+    throw Exception(response.body);
+  }
 }

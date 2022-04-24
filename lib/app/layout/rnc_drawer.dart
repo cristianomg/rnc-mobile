@@ -146,97 +146,99 @@ class _RncDrawerState extends State<RncDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            height: const RncAppBar().preferredSize.height,
-            color: const Color(kSecundary_color),
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/images/logo2.png',
-                  height: 40,
-                ),
-                const SizedBox(width: 20),
-                const Text(
-                  '4lab',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+    return SafeArea(
+      child: Drawer(
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              height: const RncAppBar().preferredSize.height,
+              color: const Color(kSecundary_color),
+              child: Row(
+                children: [
+                  Image.asset(
+                    'assets/images/logo2.png',
+                    height: 40,
                   ),
-                ),
-              ],
-            ),
-          ),
-          DrawerHeader(
-            child: Column(children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 10,
-                  bottom: 20,
-                ),
-                child: Text(_userName ?? ''),
-              ),
-              Text(_userPermission ?? ''),
-            ]),
-          ),
-          ExpansionPanelList(
-            expansionCallback: _onExpand,
-            children: _buildMenuList()
-                .asMap()
-                .map(
-                  (index, panel) => MapEntry(
-                    index,
-                    ExpansionPanel(
-                      headerBuilder: (context, isExpanded) {
-                        var hasSubItems = (panel['items'] as List).isNotEmpty;
-                        return ListTile(
-                          onTap: () {
-                            if (hasSubItems) {
-                              _onExpand(index, isExpanded);
-                            } else {
-                              _onSelected(panel, panel, false);
-                            }
-                          },
-                          iconColor: const Color(0xffF5D556),
-                          leading: panel['icon'] as Widget,
-                          title: Text(
-                            panel['title'].toString(),
-                          ),
-                          selected: isExpanded,
-                          dense: true,
-                        );
-                      },
-                      body: Container(
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Column(
-                          children: (panel['items'] != null
-                                  ? panel['items'] as List
-                                  : [])
-                              .map(
-                                (item) => ListTile(
-                                  onTap: () => _onSelected(panel, item, true),
-                                  style: ListTileStyle.drawer,
-                                  iconColor: const Color(0xffF5D556),
-                                  leading: item['icon'] as Widget,
-                                  title: Text(item['title']),
-                                ),
-                              )
-                              .toList(),
-                        ),
-                      ),
-                      isExpanded: panel['isExpanded'] as bool,
-                      canTapOnHeader: true,
+                  const SizedBox(width: 20),
+                  const Text(
+                    '4lab',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
                   ),
-                )
-                .values
-                .toList(),
-          )
-        ],
+                ],
+              ),
+            ),
+            DrawerHeader(
+              child: Column(children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 10,
+                    bottom: 20,
+                  ),
+                  child: Text(_userName ?? ''),
+                ),
+                Text(_userPermission ?? ''),
+              ]),
+            ),
+            ExpansionPanelList(
+              expansionCallback: _onExpand,
+              children: _buildMenuList()
+                  .asMap()
+                  .map(
+                    (index, panel) => MapEntry(
+                      index,
+                      ExpansionPanel(
+                        headerBuilder: (context, isExpanded) {
+                          var hasSubItems = (panel['items'] as List).isNotEmpty;
+                          return ListTile(
+                            onTap: () {
+                              if (hasSubItems) {
+                                _onExpand(index, isExpanded);
+                              } else {
+                                _onSelected(panel, panel, false);
+                              }
+                            },
+                            iconColor: const Color(0xffF5D556),
+                            leading: panel['icon'] as Widget,
+                            title: Text(
+                              panel['title'].toString(),
+                            ),
+                            selected: isExpanded,
+                            dense: true,
+                          );
+                        },
+                        body: Container(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Column(
+                            children: (panel['items'] != null
+                                    ? panel['items'] as List
+                                    : [])
+                                .map(
+                                  (item) => ListTile(
+                                    onTap: () => _onSelected(panel, item, true),
+                                    style: ListTileStyle.drawer,
+                                    iconColor: const Color(0xffF5D556),
+                                    leading: item['icon'] as Widget,
+                                    title: Text(item['title']),
+                                  ),
+                                )
+                                .toList(),
+                          ),
+                        ),
+                        isExpanded: panel['isExpanded'] as bool,
+                        canTapOnHeader: true,
+                      ),
+                    ),
+                  )
+                  .values
+                  .toList(),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -5,10 +5,15 @@ import 'package:flutter/material.dart';
 class RncButtom extends StatelessWidget {
   final String text;
   final Icon? icon;
+  final bool isDisabled;
   final VoidCallback? onPressed;
 
   const RncButtom(
-      {Key? key, required this.text, this.icon, required this.onPressed})
+      {Key? key,
+      required this.text,
+      this.icon,
+      required this.onPressed,
+      this.isDisabled = false})
       : super(key: key);
 
   Widget _buildLabel() {
@@ -22,8 +27,8 @@ class RncButtom extends StatelessWidget {
           ),
           Text(
             text,
-            style: const TextStyle(
-              color: Colors.black,
+            style: TextStyle(
+              color: isDisabled ? Colors.grey[400] : Colors.black,
               fontWeight: FontWeight.bold,
             ),
           )
@@ -44,8 +49,11 @@ class RncButtom extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: RaisedButton(
+        disabledColor: Colors.grey[300],
+        disabledTextColor: Colors.grey[400],
         padding: EdgeInsets.zero,
-        onPressed: onPressed,
+        onPressed: isDisabled ? null : onPressed,
+        onLongPress: isDisabled ? null : onPressed,
         child: _buildLabel(),
         color: const Color(0xffFFDE59),
       ),

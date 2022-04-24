@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class AbountTitle extends StatelessWidget {
+class AboutTitle extends StatelessWidget {
   final String text;
-  const AbountTitle({
+  const AboutTitle({
     Key? key,
     required this.text,
   }) : super(key: key);

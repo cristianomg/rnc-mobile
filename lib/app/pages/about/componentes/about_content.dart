@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class Content extends StatelessWidget {
+class AboutContent extends StatelessWidget {
   final String text;
-  const Content({
+  const AboutContent({
     Key? key,
     required this.text,
   }) : super(key: key);
