@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rnc_mobile/app/componentes/line_link.dart';
-import 'package:rnc_mobile/app/controllers/login_controller.dart';
 import 'package:rnc_mobile/app/layout/main_layout.dart';
 import 'package:rnc_mobile/app/pages/home/home_page.dart';
 import 'package:rnc_mobile/app/pages/login/cubit/login_cubit.dart';
 import 'package:rnc_mobile/app/pages/recoveryPassword/recovery_password_page.dart';
 import 'package:rnc_mobile/app/pages/register/register_page.dart';
+import 'package:rnc_mobile/dependency_injection.dart';
 
 import '../../componentes/line_separetor.dart';
 import '../../componentes/result_alert.dart';
@@ -15,11 +15,9 @@ import '../about/about_page.dart';
 import 'componentes/login_text_field.dart';
 
 class LoginPage extends StatelessWidget {
-  final LoginController controller;
   static const String routeName = '/login';
   const LoginPage({
     Key? key,
-    required this.controller,
   }) : super(key: key);
 
   _openAbout(BuildContext context) {
@@ -126,7 +124,7 @@ class LoginPage extends StatelessWidget {
                   : RncButtom(
                       text: "ENTRAR",
                       onPressed: () {
-                        context.read<LoginCubit>().onLoginButtonPressed(
+                        context.read<LoginCubit>().login(
                             emailController.text, passwordController.text);
                       },
                     ),
@@ -154,7 +152,7 @@ class LoginPage extends StatelessWidget {
             padding:
                 const EdgeInsets.only(left: 45, right: 45, top: 15, bottom: 15),
             child: BlocProvider(
-              create: (context) => LoginCubit(),
+              create: (context) => getIt.get<LoginCubit>(),
               child: _buildForm(context),
             ),
           ),

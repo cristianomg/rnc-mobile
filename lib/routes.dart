@@ -3,7 +3,6 @@ import 'package:rnc_mobile/app/controllers/ocurrence_list_controller.dart';
 import 'package:rnc_mobile/app/controllers/profile_controller.dart';
 import 'package:rnc_mobile/app/controllers/register_controller.dart';
 
-import 'app/controllers/login_controller.dart';
 import 'app/pages/home/home_page.dart';
 import 'app/pages/login/login_page.dart';
 import 'app/pages/ocurrences/list/occurrences_list_page.dart';
@@ -14,9 +13,7 @@ import 'dependency_injection.dart';
 
 final routes = {
   //
-  LoginPage.routeName: (BuildContext context) => LoginPage(
-        controller: LoginController(),
-      ),
+  LoginPage.routeName: (BuildContext context) => const LoginPage(),
   HomePage.routeName: (BuildContext context) => const HomePage(),
   //
   OcurrenceListPage.routeName: (BuildContext context) =>

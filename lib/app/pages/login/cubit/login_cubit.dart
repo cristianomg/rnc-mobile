@@ -6,11 +6,11 @@ import 'package:rnc_mobile/app/repositories/auth_repository.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit() : super(LoginInitial());
+  final AuthRepository _authRepository;
 
-  final AuthRepository _authRepository = AuthRepository();
+  LoginCubit(this._authRepository) : super(LoginInitial());
 
-  void onLoginButtonPressed(String email, String password) async {
+  void login(String email, String password) async {
     try {
       emit(LoginLoading());
       final user = LoginUser(email: email, password: password);

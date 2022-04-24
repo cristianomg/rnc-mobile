@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
-import 'package:rnc_mobile/app/controllers/login_controller.dart';
 import 'package:rnc_mobile/app/controllers/register_controller.dart';
+import 'package:rnc_mobile/app/pages/login/cubit/login_cubit.dart';
 import 'package:rnc_mobile/app/repositories/auth_repository.dart';
 import 'package:rnc_mobile/app/repositories/ocurrence_register_repository.dart';
 import 'package:rnc_mobile/app/repositories/setor_repository.dart';
@@ -28,12 +28,11 @@ void setupLocator() {
   getIt.registerSingleton<SetorRepository>(SetorRepository());
 
   //Controllers
-  getIt.registerSingletonWithDependencies<LoginController>(
-      () => LoginController(),
-      dependsOn: [AuthRepository]);
-
   getIt.registerFactory<OcurrenceListController>(
       () => OcurrenceListController());
   getIt.registerFactory<ProfileController>(() => ProfileController());
   getIt.registerFactory<RegisterController>(() => RegisterController());
+
+  //Cubits
+  getIt.registerFactory(() => LoginCubit(getIt.get<AuthRepository>()));
 }
