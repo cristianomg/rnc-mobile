@@ -1,18 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:rnc_mobile/app/models/login_user.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:rnc_mobile/dependency_injection.dart';
 
 import '../repositories/auth_repository.dart';
 
 class LoginController {
-  final AuthRepository _authRepository = AuthRepository();
-  LoginController();
+  final AuthRepository _authRepository = getIt<AuthRepository>();
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   Future login() async {
-    final prefs = await SharedPreferences.getInstance();
     final email = emailController.text;
     final password = passwordController.text;
 
@@ -21,7 +19,7 @@ class LoginController {
       password: password,
     );
 
-    final response = await _authRepository.login(user);
+    await _authRepository.login(user);
   }
 
   void dispose() {

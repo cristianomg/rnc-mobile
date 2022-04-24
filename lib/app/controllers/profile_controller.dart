@@ -30,8 +30,6 @@ class ProfileController {
     _emailController.text = user.email ?? '';
     _enrollmentController.text = user.enrollment ?? '';
     _sectorController.text = '';
-
-    print(_nameController.text);
   }
 
   void dispose() {

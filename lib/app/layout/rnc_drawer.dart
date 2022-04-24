@@ -152,7 +152,7 @@ class _RncDrawerState extends State<RncDrawer> {
           children: [
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              height: const RncAppBar().preferredSize.height,
+              height: RncAppBar().preferredSize.height,
               color: const Color(kSecundary_color),
               child: Row(
                 children: [

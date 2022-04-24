@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:rnc_mobile/app/componentes/line_separetor.dart';
 import 'package:rnc_mobile/app/layout/rnc_app_bar.dart';
@@ -39,7 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const RncAppBar(),
+      appBar: RncAppBar(),
       drawer: const RncDrawer(),
       body: Center(
         child: Column(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rnc_mobile/dependency_injection.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/constants.dart';
@@ -6,7 +7,9 @@ import '../pages/login/login_page.dart';
 import '../pages/profile/profile_page.dart';
 
 class RncAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const RncAppBar({
+  final _prefs = getIt.get<SharedPreferences>();
+
+  RncAppBar({
     Key? key,
   }) : super(key: key);
 
@@ -16,9 +19,7 @@ class RncAppBar extends StatelessWidget implements PreferredSizeWidget {
         Navigator.of(context).pushReplacementNamed(ProfilePage.routeName);
         break;
       case 'logout':
-        final prefs = await SharedPreferences.getInstance();
-        prefs.clear();
-
+        _prefs.clear();
         Navigator.of(context).pushReplacementNamed(LoginPage.routeName);
         break;
     }

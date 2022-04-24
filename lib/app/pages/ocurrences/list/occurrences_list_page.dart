@@ -164,7 +164,7 @@ class _OcurrenceListPageState extends State<OcurrenceListPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: const RncAppBar(),
+        appBar: RncAppBar(),
         drawer: const RncDrawer(),
         body: Center(
           child: Column(
