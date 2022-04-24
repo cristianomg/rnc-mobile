@@ -14,8 +14,9 @@ import 'dependency_injection.dart';
 
 final routes = {
   //
-  LoginPage.routeName: (BuildContext context) =>
-      LoginPage(controller: getIt.get<LoginController>()),
+  LoginPage.routeName: (BuildContext context) => LoginPage(
+        controller: LoginController(),
+      ),
   HomePage.routeName: (BuildContext context) => const HomePage(),
   //
   OcurrenceListPage.routeName: (BuildContext context) =>

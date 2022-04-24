@@ -14,7 +14,7 @@ GetIt getIt = GetIt.instance;
 
 void setupLocator() {
   //SharedPrefs
-  getIt.registerLazySingletonAsync<SharedPreferences>(() async {
+  getIt.registerSingletonAsync<SharedPreferences>(() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs;
   });
@@ -22,10 +22,10 @@ void setupLocator() {
   //Repositories
   getIt.registerSingletonWithDependencies(() => AuthRepository(),
       dependsOn: [SharedPreferences]);
-  getIt.registerLazySingleton<UserRepository>(() => UserRepository());
-  getIt.registerLazySingleton<OcurrenceRegisterRepository>(
-      () => OcurrenceRegisterRepository());
-  getIt.registerLazySingleton<SetorRepository>(() => SetorRepository());
+  getIt.registerSingleton<UserRepository>(UserRepository());
+  getIt.registerSingleton<OcurrenceRegisterRepository>(
+      OcurrenceRegisterRepository());
+  getIt.registerSingleton<SetorRepository>(SetorRepository());
 
   //Controllers
   getIt.registerSingletonWithDependencies<LoginController>(

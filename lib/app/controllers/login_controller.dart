@@ -5,7 +5,7 @@ import 'package:rnc_mobile/dependency_injection.dart';
 import '../repositories/auth_repository.dart';
 
 class LoginController {
-  final AuthRepository _authRepository = getIt<AuthRepository>();
+  final AuthRepository _authRepository = getIt.get<AuthRepository>();
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
