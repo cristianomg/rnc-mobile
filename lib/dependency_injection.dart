@@ -13,20 +13,25 @@ import 'app/controllers/profile_controller.dart';
 GetIt getIt = GetIt.instance;
 
 void setupLocator() {
-  //Repositories
-  getIt.registerLazySingleton(() => AuthRepository());
-  getIt.registerLazySingleton<UserRepository>(() => UserRepository());
-  getIt.registerLazySingleton<OcurrenceRegisterRepository>(
-      () => OcurrenceRegisterRepository());
-  getIt.registerLazySingleton<SetorRepository>(() => SetorRepository());
-//SharedPrefs
+  //SharedPrefs
   getIt.registerLazySingletonAsync<SharedPreferences>(() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs;
   });
 
+  //Repositories
+  getIt.registerSingletonWithDependencies(() => AuthRepository(),
+      dependsOn: [SharedPreferences]);
+  getIt.registerLazySingleton<UserRepository>(() => UserRepository());
+  getIt.registerLazySingleton<OcurrenceRegisterRepository>(
+      () => OcurrenceRegisterRepository());
+  getIt.registerLazySingleton<SetorRepository>(() => SetorRepository());
+
   //Controllers
-  getIt.registerFactory<LoginController>(() => LoginController());
+  getIt.registerSingletonWithDependencies<LoginController>(
+      () => LoginController(),
+      dependsOn: [AuthRepository]);
+
   getIt.registerFactory<OcurrenceListController>(
       () => OcurrenceListController());
   getIt.registerFactory<ProfileController>(() => ProfileController());
